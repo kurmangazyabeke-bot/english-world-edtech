@@ -10,6 +10,8 @@ import {
   HelpCircle,
   AlertCircle,
   RotateCw,
+  Radio,
+  FileAudio,
 } from 'lucide-react';
 import { ALL_WORDS, MODULES } from '../../data/curriculum';
 import {
@@ -18,13 +20,14 @@ import {
   ListenAndChooseGame,
   SpellTheWordGame,
 } from '../../components/PracticeGames';
+import { AudioPlayer } from '../../components/AudioPlayer';
 import { useProgress } from '../../lib/progress';
 import { sounds } from '../../lib/soundEffects';
 
 export default function PracticePage() {
   const { progress } = useProgress();
   const [selectedModuleId, setSelectedModuleId] = useState<string>('all');
-  const [activeGame, setActiveGame] = useState<'match' | 'choose' | 'listen' | 'spell'>('match');
+  const [activeGame, setActiveGame] = useState<'match' | 'choose' | 'listen' | 'spell' | 'audio'>('match');
   const [onlyMistakes, setOnlyMistakes] = useState(false);
 
   // Pool of words to practice
@@ -38,6 +41,13 @@ export default function PracticePage() {
       pool = mistakePool;
     }
   }
+
+  // All audio tracks for the selected module or all modules
+  const allAudioTracks = (
+    selectedModuleId === 'all'
+      ? MODULES.flatMap((m) => m.audioTracks || [])
+      : MODULES.find((m) => m.id === selectedModuleId)?.audioTracks || []
+  );
 
   const mistakeCount = progress.mistakeWordIds.length;
 
@@ -97,7 +107,7 @@ export default function PracticePage() {
       </div>
 
       {/* Game Selector Tabs */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
         <button
           onClick={() => {
             sounds.playClick();
@@ -169,10 +179,87 @@ export default function PracticePage() {
             Practice writing letters
           </div>
         </button>
+
+        <button
+          onClick={() => {
+            sounds.playClick();
+            setActiveGame('audio');
+          }}
+          className={`p-4 rounded-3xl border text-left transition-all col-span-2 sm:col-span-1 ${
+            activeGame === 'audio'
+              ? 'bg-gradient-to-tr from-brand-blue to-brand-purple text-white border-transparent shadow-hover scale-102'
+              : 'bg-white border-brand-border text-indigo-deep hover:bg-slate-50'
+          }`}
+        >
+          <Radio className="w-6 h-6 mb-2 text-amber-300" />
+          <div className="font-display font-black text-sm sm:text-base flex items-center justify-between">
+            <span>Audio Studio</span>
+            <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/20 font-bold">
+              {allAudioTracks.length}
+            </span>
+          </div>
+          <div className={`text-xs ${activeGame === 'audio' ? 'text-purple-100' : 'text-brand-muted'}`}>
+            Textbook voice files
+          </div>
+        </button>
       </div>
 
       {/* Game Window */}
-      {pool.length === 0 ? (
+      {activeGame === 'audio' ? (
+        <div className="space-y-6">
+          <AudioPlayer
+            title={
+              selectedModuleId === 'all'
+                ? 'Curriculum Audio Studio — All 11 Textbook Recordings'
+                : `${MODULES.find((m) => m.id === selectedModuleId)?.title} — Audio Studio`
+            }
+            subtitle="Authentic voice recordings from the speech folder with visualizer"
+            tracks={allAudioTracks}
+          />
+
+          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-brand-border shadow-card space-y-4">
+            <h3 className="font-display font-black text-xl text-indigo-deep flex items-center gap-2">
+              <FileAudio className="w-5 h-5 text-brand-purple" />
+              <span>Available Audio Files in this selection ({allAudioTracks.length})</span>
+            </h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {allAudioTracks.map((tr, idx) => (
+                <div
+                  key={tr.id}
+                  className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-3 hover:bg-purple-50/40 transition-colors"
+                >
+                  <div className="flex items-center gap-3 min-w-0">
+                    <span className="w-8 h-8 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-xs flex-shrink-0">
+                      {idx + 1}
+                    </span>
+                    <div className="min-w-0">
+                      <div className="font-bold text-sm text-indigo-deep truncate">
+                        {tr.title}
+                      </div>
+                      <div className="text-[11px] text-slate-500 truncate">
+                        {tr.subtitle}
+                      </div>
+                      <div className="text-[10px] font-mono text-purple-700 truncate mt-0.5">
+                        {tr.originalFileName}
+                      </div>
+                    </div>
+                  </div>
+
+                  <a
+                    href={tr.src}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-bold text-indigo-deep hover:bg-brand-blue hover:text-white transition-colors flex-shrink-0"
+                  >
+                    Open
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      ) : pool.length === 0 ? (
         <div className="bg-white rounded-3xl p-10 text-center border border-brand-border">
           <p className="font-bold text-sm text-slate-500">
             No words found for this selection. Try selecting "All Modules".

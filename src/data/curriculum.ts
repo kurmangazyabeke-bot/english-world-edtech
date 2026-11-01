@@ -999,6 +999,32 @@ export const MODULES: ModuleData[] = [
     hasReading: true,
     audioWordsSrc: '/audio/g4-m5-words-1.mp4',
     readingAudioSrc: '/audio/g4-m5-popcorn.mp4',
+    audioTracks: [
+      {
+        id: 'g4-m5-t1',
+        title: 'New Words — Part 1 (Food)',
+        subtitle: 'Beef, Rice, Chicken, Fish, Peas, Noodles',
+        src: '/audio/g4-m5-words-1.mp4',
+        originalFileName: 'Unit 5 Food and drinks new words 1.m4a.mp4',
+        type: 'words',
+      },
+      {
+        id: 'g4-m5-t2',
+        title: 'New Words — Part 2 (Food & Drinks)',
+        subtitle: 'Milk, Pasta, Corn, Butter, Steak, Bread',
+        src: '/audio/new-words-2.mp4',
+        originalFileName: 'New words 2.m4a.mp4',
+        type: 'words',
+      },
+      {
+        id: 'g4-m5-t3',
+        title: 'Story Reading: I like popcorn!',
+        subtitle: 'Full dialogue listening track from textbook',
+        src: '/audio/g4-m5-popcorn.mp4',
+        originalFileName: 'ext I like popcorn.m4a.mp4',
+        type: 'story',
+      },
+    ],
     wordGroups: [
       {
         id: 'g4-m5-p1',
@@ -1188,6 +1214,24 @@ export const MODULES: ModuleData[] = [
     hasReading: true,
     audioWordsSrc: '/audio/g4-m6-words-1.mp4',
     readingAudioSrc: '/audio/g4-m6-zoo.mp4',
+    audioTracks: [
+      {
+        id: 'g4-m6-t1',
+        title: 'New Words — Animals & Body Parts',
+        subtitle: 'Cow, Horse, Goat, Duck, Chicken, Sheep, Head, Nose, Tail...',
+        src: '/audio/g4-m6-words-1.mp4',
+        originalFileName: 'Unit 6 Animals new words 1.m4a.mp4',
+        type: 'words',
+      },
+      {
+        id: 'g4-m6-t2',
+        title: 'Story Reading: At the zoo!',
+        subtitle: 'Elephants, baby tigers and zoo photo story',
+        src: '/audio/g4-m6-zoo.mp4',
+        originalFileName: 'Text At the zoo.m4a.mp4',
+        type: 'story',
+      },
+    ],
     wordGroups: [
       {
         id: 'g4-m6-p1',
@@ -1361,6 +1405,24 @@ export const MODULES: ModuleData[] = [
     hasReading: true,
     audioWordsSrc: '/audio/g4-m7-words-1.mp4',
     readingAudioSrc: '/audio/g4-m7-town.mp4',
+    audioTracks: [
+      {
+        id: 'g4-m7-t1',
+        title: 'New Words — Nature & Town Places',
+        subtitle: 'Forest, Mountain, Lake, River, Island, Bank, Museum, Hotel...',
+        src: '/audio/g4-m7-words-1.mp4',
+        originalFileName: 'Unit 7 Travelling new words 1.m4a.mp4',
+        type: 'words',
+      },
+      {
+        id: 'g4-m7-t2',
+        title: 'Story Reading: At the zoo! (Town Road Trip)',
+        subtitle: 'Town buildings, sweet shop and Grandma surprise ride',
+        src: '/audio/g4-m7-town.mp4',
+        originalFileName: 'Text 2.m4a.mp4',
+        type: 'story',
+      },
+    ],
     wordGroups: [
       {
         id: 'g4-m7-p1',
@@ -1547,6 +1609,24 @@ export const MODULES: ModuleData[] = [
     hasReading: true,
     audioWordsSrc: '/audio/g4-m8-words.mp4',
     readingAudioSrc: '/audio/g4-m8-sunflowers.mp4',
+    audioTracks: [
+      {
+        id: 'g4-m8-t1',
+        title: 'New Words — Modern Technology Devices',
+        subtitle: 'Headphones, GPS, Smartphone, Laptop, Games Console...',
+        src: '/audio/g4-m8-words.mp4',
+        originalFileName: 'Unit 8 Wonderful world new words.m4a.mp4',
+        type: 'words',
+      },
+      {
+        id: 'g4-m8-t2',
+        title: 'Story Reading: Sunflowers',
+        subtitle: 'Planting sunflower seeds, four seasons & Cody\'s tomato',
+        src: '/audio/g4-m8-sunflowers.mp4',
+        originalFileName: 'Text Sunflowers.m4a.mp4',
+        type: 'story',
+      },
+    ],
     wordGroups: [
       {
         id: 'g4-m8-all',
@@ -1724,6 +1804,24 @@ export const MODULES: ModuleData[] = [
     hasReading: true,
     audioWordsSrc: '/audio/g5-m1-words.mp4',
     readingAudioSrc: '/audio/g5-m1-unusual-buildings.mp4',
+    audioTracks: [
+      {
+        id: 'g5-m1-t1',
+        title: 'New Words — Rooms & Home Furniture',
+        subtitle: 'Bedroom, Bathroom, Living room, Kitchen, Hall, Sink, Fridge...',
+        src: '/audio/g5-m1-words.mp4',
+        originalFileName: '5 grade Module 1 new words.m4a.mp4',
+        type: 'words',
+      },
+      {
+        id: 'g5-m1-t2',
+        title: 'Story Reading: Unusual Buildings',
+        subtitle: 'China Piano Building & Malawi Football House',
+        src: '/audio/g5-m1-unusual-buildings.mp4',
+        originalFileName: 'Text Unusual buildings.m4a.mp4',
+        type: 'story',
+      },
+    ],
     wordGroups: [
       {
         id: 'g5-m1-p1',

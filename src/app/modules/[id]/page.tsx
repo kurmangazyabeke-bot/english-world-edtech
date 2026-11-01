@@ -24,6 +24,7 @@ import { FlashcardDeck } from '../../../components/Flashcard';
 import { ReadingViewer } from '../../../components/ReadingViewer';
 import { PracticeHub } from '../../../components/PracticeGames';
 import { ModuleQuiz } from '../../../components/ModuleQuiz';
+import { AudioPlayer } from '../../../components/AudioPlayer';
 import {
   FoodMatchSpecial,
   BodyPartsSpecial,
@@ -42,7 +43,7 @@ export default function ModuleDetailPage() {
   const module = MODULES.find((m) => m.id === moduleId);
 
   const [activeSection, setActiveSection] = useState<
-    'overview' | 'words' | 'reading' | 'practice' | 'special' | 'quiz'
+    'overview' | 'audio' | 'words' | 'reading' | 'practice' | 'special' | 'quiz'
   >('overview');
   const [wordViewMode, setWordViewMode] = useState<'grid' | 'flashcards'>('grid');
 
@@ -59,6 +60,7 @@ export default function ModuleDetailPage() {
 
   const sections = [
     { id: 'overview', label: 'Overview', icon: Layers },
+    { id: 'audio', label: `Audio Tracks (${module.audioTracks?.length || 1})`, icon: Volume2 },
     { id: 'words', label: `New Words (${module.wordsCount})`, icon: BookOpen },
     { id: 'reading', label: 'Reading', icon: FileText },
     { id: 'special', label: 'Special Explorer', icon: Sparkles },
@@ -157,6 +159,26 @@ export default function ModuleDetailPage() {
       {/* ================= SECTION: OVERVIEW ================= */}
       {activeSection === 'overview' && (
         <div className="space-y-6">
+          {/* Featured Audio Studio */}
+          {module.audioTracks && module.audioTracks.length > 0 && (
+            <div className="space-y-2">
+              <div className="flex items-center justify-between px-1">
+                <span className="text-xs font-black uppercase text-brand-blue tracking-wider flex items-center gap-1.5">
+                  <Volume2 className="w-4 h-4 text-brand-blue" />
+                  <span>Module Audio Studio ({module.audioTracks.length} recordings from textbook)</span>
+                </span>
+                <span className="text-xs font-semibold text-brand-muted">
+                  Authentic recordings from speech folder
+                </span>
+              </div>
+              <AudioPlayer
+                title={`${module.title} — Official Listening Tracks`}
+                subtitle="Listen to teacher recordings for vocabulary words and reading stories"
+                tracks={module.audioTracks}
+              />
+            </div>
+          )}
+
           {/* Quick Start Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <button
@@ -290,9 +312,72 @@ export default function ModuleDetailPage() {
         </div>
       )}
 
+      {/* ================= SECTION: AUDIO TRACKS ================= */}
+      {activeSection === 'audio' && (
+        <div className="space-y-6">
+          <AudioPlayer
+            title={`${module.title} — Audio Studio`}
+            subtitle="Authentic textbook listening tracks with live soundwave visualizer"
+            tracks={module.audioTracks}
+          />
+
+          {/* Audio Tracks Catalog List */}
+          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-brand-border shadow-card space-y-4">
+            <h3 className="font-display font-black text-xl text-indigo-deep flex items-center gap-2">
+              <Volume2 className="w-5 h-5 text-brand-blue" />
+              <span>Available Audio Files for this Module</span>
+            </h3>
+
+            <div className="space-y-3">
+              {module.audioTracks?.map((track, i) => (
+                <div
+                  key={track.id}
+                  className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 hover:bg-blue-50/40 transition-colors"
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-2xl bg-blue-100 text-brand-blue flex items-center justify-center font-bold text-sm flex-shrink-0 mt-0.5">
+                      {i + 1}
+                    </div>
+                    <div>
+                      <div className="font-display font-black text-base text-indigo-deep">
+                        {track.title}
+                      </div>
+                      <div className="text-xs font-semibold text-slate-500">
+                        {track.subtitle}
+                      </div>
+                      <div className="text-[11px] font-mono text-purple-700 mt-1">
+                        📁 Filename: {track.originalFileName}
+                      </div>
+                    </div>
+                  </div>
+
+                  <a
+                    href={track.src}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2 rounded-xl bg-white border border-slate-200 text-indigo-deep hover:bg-brand-blue hover:text-white font-bold text-xs flex items-center gap-1.5 transition-colors shadow-xs"
+                  >
+                    <span>Direct File</span>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* ================= SECTION: NEW WORDS ================= */}
       {activeSection === 'words' && (
         <div className="space-y-6">
+          {/* Audio Player for this module's words */}
+          {module.audioTracks?.some((t) => t.type === 'words') && (
+            <AudioPlayer
+              title={`${module.title} — New Words Audio`}
+              subtitle="Listen to teacher recordings for all vocabulary words"
+              tracks={module.audioTracks.filter((t) => t.type === 'words')}
+            />
+          )}
+
           {/* View mode toggle: Grid vs Flashcards */}
           <div className="flex items-center justify-between bg-white p-3 rounded-2xl border border-brand-border shadow-xs">
             <div className="text-xs font-bold text-brand-muted px-2">

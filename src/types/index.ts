@@ -58,6 +58,15 @@ export interface QuizQuestion {
   sourceWordId?: string;
 }
 
+export interface AudioTrack {
+  id: string;
+  title: string;
+  subtitle: string;
+  src: string;
+  originalFileName: string;
+  type: 'words' | 'story';
+}
+
 export interface ModuleData {
   id: string;
   grade: 4 | 5;
@@ -75,6 +84,7 @@ export interface ModuleData {
   hasReading: boolean;
   audioWordsSrc?: string;
   readingAudioSrc?: string;
+  audioTracks?: AudioTrack[];
   wordGroups: {
     id: string;
     title: string;
