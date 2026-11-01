@@ -99,10 +99,11 @@ export function AudioPlayer({
       audioRef.current.currentTime = 0;
       setCurrentTime(0);
       setIsPlaying(false);
+      audioRef.current.load();
     }
     speech.stop();
     ttsRunningRef.current = false;
-  }, [activeTrackIndex]);
+  }, [activeTrackIndex, activeTrack?.src]);
 
   // Cleanup on unmount
   useEffect(() => {

@@ -420,24 +420,50 @@ export default function ModuleDetailPage() {
             <FlashcardDeck words={allModuleWords} />
           ) : (
             <div className="space-y-8">
-              {module.wordGroups.map((group) => (
-                <div key={group.id} className="space-y-4">
-                  <div className="flex items-center justify-between pb-2 border-b border-brand-border/70">
-                    <h3 className="font-display font-black text-lg text-indigo-deep">
-                      {group.title}
-                    </h3>
-                    <span className="text-xs font-bold text-brand-muted">
-                      {group.words.length} words
-                    </span>
-                  </div>
+              {module.wordGroups.map((group, groupIdx) => {
+                const wordsTracks = module.audioTracks?.filter((t) => t.type === 'words') || [];
+                const matchingTrack = wordsTracks[groupIdx] || wordsTracks[0];
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {group.words.map((word) => (
-                      <VocabularyCard key={word.id} word={word} />
-                    ))}
+                return (
+                  <div key={group.id} className="space-y-4">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-2 border-b border-brand-border/70 gap-2">
+                      <div>
+                        <h3 className="font-display font-black text-lg text-indigo-deep flex items-center gap-2">
+                          <span>{group.title}</span>
+                          <span className="text-xs font-bold text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-full">
+                            {group.words.length} words
+                          </span>
+                        </h3>
+                        {matchingTrack && (
+                          <div className="text-[11px] font-mono text-purple-700 mt-0.5 flex items-center gap-1.5">
+                            <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" />
+                            <span>Audio source: <strong>{matchingTrack.originalFileName}</strong></span>
+                          </div>
+                        )}
+                      </div>
+                      {matchingTrack && (
+                        <div className="flex items-center gap-2">
+                          <a
+                            href={matchingTrack.src}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-purple-50 hover:bg-purple-100 text-brand-purple font-bold text-xs border border-purple-200 transition-colors shadow-xs"
+                          >
+                            <Volume2 className="w-3.5 h-3.5" />
+                            <span>Play Track {groupIdx + 1}</span>
+                          </a>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {group.words.map((word) => (
+                        <VocabularyCard key={word.id} word={word} />
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           )}
         </div>
