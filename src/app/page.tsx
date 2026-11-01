@@ -51,16 +51,43 @@ export default function DashboardPage() {
               <span>Let's learn English! • Grades 4–5 Curriculum</span>
             </div>
 
-            <h1 className="font-display font-black text-3xl sm:text-5xl tracking-tight leading-tight">
-              Your English Adventure <br className="hidden sm:inline" />
+            <h1 className="font-display font-black text-2xl sm:text-4xl lg:text-5xl tracking-tight leading-tight">
+              Learning English with Voices: <br className="hidden sm:inline" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-200 to-emerald-300">
-                Starts Here!
+                Fun and Easy for Young Learners
               </span>
             </h1>
 
-            <p className="text-sm sm:text-base font-medium text-slate-200 leading-relaxed">
-              Learn new words, read stories and have fun! All 67 curriculum words with British & American audio, IPA transcriptions, Kazakh translations, and interactive games.
-            </p>
+            <div className="space-y-3 text-slate-200 text-sm sm:text-base leading-relaxed">
+              <p className="font-bold text-white text-base sm:text-lg">
+                Welcome to the world of English listening!
+              </p>
+              <p className="font-semibold text-slate-300 text-xs sm:text-sm">
+                Here you can:
+              </p>
+              <ul className="space-y-1.5 text-xs sm:text-sm font-medium text-slate-100">
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400 flex-shrink-0" />
+                  <span>Listen to English words and sentences.</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400 flex-shrink-0" />
+                  <span>Practise understanding spoken English.</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400 flex-shrink-0" />
+                  <span>Improve your pronunciation.</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400 flex-shrink-0" />
+                  <span>Learn new vocabulary.</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400 flex-shrink-0" />
+                  <span>Complete fun listening activities.</span>
+                </li>
+              </ul>
+            </div>
 
             <div className="pt-2 flex flex-wrap items-center justify-center md:justify-start gap-3">
               <Link
