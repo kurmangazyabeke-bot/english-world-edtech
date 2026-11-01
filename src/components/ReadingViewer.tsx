@@ -193,6 +193,7 @@ export function ReadingViewer({
         title={`Listen: ${hasParts ? currentPart!.title : reading.title}`}
         subtitle="Listen to authentic audio or follow along sentence-by-sentence"
         audioFileSrc={reading.audioSrc}
+        audioFileName={reading.audioFileName}
         fullSpeechText={fullText}
         sentences={lines.map((l) => l.text)}
         onSentenceChange={(idx) => setActiveSentenceIdx(idx >= 0 ? idx : null)}

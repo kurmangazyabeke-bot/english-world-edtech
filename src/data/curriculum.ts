@@ -1041,6 +1041,7 @@ export const MODULES: ModuleData[] = [
       id: 'g4-m5-reading',
       title: 'I like popcorn!',
       audioSrc: '/audio/g4-m5-popcorn.mp4',
+      audioFileName: 'ext I like popcorn.m4a.mp4',
       lines: [
         { id: 'l1', text: 'Can we watch a cartoon, Dad?' },
         { id: 'l2', text: 'Good idea! How about some popcorn?' },
@@ -1256,6 +1257,7 @@ export const MODULES: ModuleData[] = [
       id: 'g4-m6-reading',
       title: 'At the zoo!',
       audioSrc: '/audio/g4-m6-zoo.mp4',
+      audioFileName: 'Text 6 unit.mp4',
       lines: [
         { id: 'l1', text: "Look at the elephants! They've got a big body!" },
         { id: 'l2', text: "Let's take a picture!" },
@@ -1435,7 +1437,7 @@ export const MODULES: ModuleData[] = [
         title: 'Story Reading: At the zoo! (Town Road Trip)',
         subtitle: 'Town buildings, sweet shop and Grandma surprise ride',
         src: '/audio/g4-m7-town.mp4',
-        originalFileName: 'Text 2.m4a.mp4',
+        originalFileName: 'at the zoo.mp4',
         type: 'story',
       },
     ],
@@ -1459,6 +1461,7 @@ export const MODULES: ModuleData[] = [
       discrepancyNote:
         'In the original document, this story is titled "At the zoo!", even though the story is entirely about exploring a town, its buildings (fire station, baker\'s, greengrocer\'s, post office, hospital, farm, sweet shop) and a surprise ride with Grandma.',
       audioSrc: '/audio/g4-m7-town.mp4',
+      audioFileName: 'at the zoo.mp4',
       lines: [
         { id: 'l1', text: 'Wow! This town is so cool!' },
         { id: 'l2', text: "There's a fire station next to the baker's!" },
@@ -1654,6 +1657,7 @@ export const MODULES: ModuleData[] = [
       id: 'g4-m8-reading',
       title: 'Sunflowers',
       audioSrc: '/audio/g4-m8-sunflowers.mp4',
+      audioFileName: 'Text Sunflowers.m4a.mp4',
       lines: [
         { id: 'l1', text: "Come on, children! It's spring. Time to plant our sunflower seeds!" },
         { id: 'l2', text: 'I like planting seeds!' },
@@ -1862,6 +1866,7 @@ export const MODULES: ModuleData[] = [
       id: 'g5-m1-reading',
       title: 'Unusual Buildings',
       audioSrc: '/audio/g5-m1-unusual-buildings.mp4',
+      audioFileName: 'Text Unusual buildings.m4a.mp4',
       parts: [
         {
           id: 'part-a',

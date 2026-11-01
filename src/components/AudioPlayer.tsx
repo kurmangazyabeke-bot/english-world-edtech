@@ -25,6 +25,7 @@ interface AudioPlayerProps {
   subtitle?: string;
   tracks?: AudioTrack[];
   audioFileSrc?: string;
+  audioFileName?: string;
   fullSpeechText?: string;
   sentences?: string[];
   onSentenceChange?: (index: number) => void;
@@ -36,6 +37,7 @@ export function AudioPlayer({
   subtitle,
   tracks = [],
   audioFileSrc,
+  audioFileName,
   fullSpeechText,
   sentences = [],
   onSentenceChange,
@@ -52,8 +54,8 @@ export function AudioPlayer({
             title: title || 'Audio Recording',
             subtitle: subtitle || 'Lesson Audio',
             src: audioFileSrc,
-            originalFileName: audioFileSrc.split('/').pop() || 'audio.mp4',
-            type: 'words',
+            originalFileName: audioFileName || decodeURIComponent(audioFileSrc.split('/').pop() || 'audio.mp4'),
+            type: 'story',
           },
         ]
       : [];

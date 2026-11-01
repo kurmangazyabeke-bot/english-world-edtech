@@ -27,6 +27,7 @@ export interface ReadingPart {
   text: string;
   lines: ReadingLine[];
   audioSrc?: string;
+  audioFileName?: string;
 }
 
 export interface ReadingStory {
@@ -36,6 +37,7 @@ export interface ReadingStory {
   hasTitleDiscrepancy?: boolean;
   discrepancyNote?: string;
   audioSrc?: string;
+  audioFileName?: string;
   lines?: ReadingLine[];
   parts?: ReadingPart[];
   comprehensionQuestions: {
